@@ -1,31 +1,45 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
-
+    <title>Auto Reload YouTube</title>
 </head>
 <body>
-    <h2>Set Reload Time(in Seconds)</h2>
-    <input type="number" name="" id="reloadTime" value="10" min="1">
-    <button id = "save">Save</button>
+    <h2>Set Reload Time (in seconds)</h2>
+    <input type="number" id="reloadTime" value="10" min="5">
+    <button id="save">Save</button>
     <br><br>
-    <button id = "Reset" >Reset Button</button>
+    <button id="reset">Reset Reload Count</button>
+
     <script>
-        document.addEventListener("DOMContentLoaded",() => {
-            chrome.storage.sync.get(["reloadTime","reloadCount"],(data)=> {
+        document.addEventListener("DOMContentLoaded", () => {
+            chrome.storage.sync.get(["reloadTime", "reloadCount"], (data) => {
                 document.getElementById("reloadTime").value = data.reloadTime;
             });
 
-            document.getElementById("Save").addEventListener("Click",()=>{
+            document.getElementById("save").addEventListener("click", () => {
                 let reloadTime = parseInt(document.getElementById("reloadTime").value);
-                chrome.storage.sync.set({reloadTime: reloadTime,reloadCount: 0});
-                alert("Reload Time Updated!");
+                chrome.storage.sync.set({ reloadTime: reloadTime, reloadCount: 0 }, () => {
+                    alert("Reload time updated!");
+                });
             });
-            document.getElementById("reset").addEventListener("Click",()=> {
-                chrome.storage.sync.set({reloadCount: 0});
-                alert("Reload Count Reset");
+
+            document.getElementById("reset").addEventListener("click", () => {
+                chrome.storage.sync.set({ reloadCount: 0 }, () => {
+                    alert("Reload count reset!");
+                });
             });
         });
     </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Auto Reload YouTube</title>
+    <script defer src="popup.js"></script>
+</head>
+<body>
+    <h2>YouTube Auto Reload</h2>
+    <button id="reset">Reset Reload Count</button>
 </body>
 </html>

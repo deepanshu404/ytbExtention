@@ -1,21 +1,28 @@
+
 {
     "manifest_version": 3,
-    "name":"Youtube Reloader Extention",
-    "version":"1.0",
-    "description":"Youtube Video Reloader",
-    "permissions":["tabs","storage"],
-    "background":{
-        "service_worker":"background.js"
+    "name": "Auto Reload YouTube",
+    "version": "1.0",
+    "description": "Automatically reloads YouTube videos every 0.2s (5 times only)",
+    "permissions": ["storage", "tabs", "scripting"],
+    "host_permissions": ["https://www.youtube.com/*"],
+    "action": {
+      "default_popup": "popup.html"
     },
-    "host_permission":[
-        "https://www.youtube.com/*"
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["content.js"]
+      }
     ],
-    "action":{
-        "default_popup":"popup.html"
-    },
-    "content_script":[{
-        "matches":["https://www.youtube.com/*"],
-        "js":["contnet.js"]
-    }
+    "web_accessible_resources": [
+      {
+        "resources": ["popup.js"],
+        "matches": ["<all_urls>"]
+      }
     ]
-}
+  }
+  
