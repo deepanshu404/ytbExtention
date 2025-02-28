@@ -5,7 +5,7 @@
     "description":"Youtube Video Reloader",
     "permissions":["tabs","storage"],
     "background":{
-        "service_worker":"background js"
+        "service_worker":"background.js"
     },
     "host_permission":[
         "https://www.youtube.com/*"
