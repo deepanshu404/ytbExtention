@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+
+</head>
+<body>
+    <h2>Set Reload Time(in Seconds)</h2>
+    <input type="number" name="" id="reloadTime" value="10" min="1">
+    <button id = "save">Save</button>
+    <br><br>
+    <button id = "Reset" >Reset Button</button>
+    <script>
+        document.addEventListener("DOMContentLoaded",() => {
+            chrome.storage.sync.get(["reloadTime","reloadCount"],(data)=> {
+                document.getElementById("reloadTime").value = data.reloadTime;
+            });
+
+            document.getElementById("Save").addEventListener("Click",()=>{
+                let reloadTime = parseInt(document.getElementById("reloadTime").value);
+                chrome.storage.sync.set({reloadTime: reloadTime,reloadCount: 0});
+                alert("Reload Time Updated!");
+            });
+            document.getElementById("reset").addEventListener("Click",()=> {
+                chrome.storage.sync.set({reloadCount: 0});
+                alert("Reload Count Reset");
+            });
+        });
+    </script>
+</body>
+</html>
